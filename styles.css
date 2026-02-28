@@ -1,0 +1,31 @@
+/*create a 16x16 grid of divs that fill the whole page horizontally and vertically */
+html{
+    display: flex;
+    justify-content: center;
+}
+#mainDiv{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 960px;
+    height: 960px;
+    border: solid red 1px;
+    
+}
+
+
+.gridDivVertical{
+    display: flex;
+    flex: 1;
+}
+
+.gridDivHorizontal{
+    border: solid black 1px;
+    flex: 1;
+}
+
+.gridDivHorizontalColored{
+    border: solid rgb(250, 233, 0) 1px;
+    background-color: rgb(250, 233, 0);
+    flex: 1;
+}
