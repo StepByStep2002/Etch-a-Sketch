@@ -1,21 +1,27 @@
 const mainDiv = document.getElementById("mainDiv");
 const changeGrid = document.getElementById("changeGrid")
-for(let i = 0; i < 16; i++)
-{
-    let createDivVertical = document.createElement("div");
-    createDivVertical.className = "gridDivVertical"
-    mainDiv.appendChild(createDivVertical);
 
-    for(let j = 0; j < 16; j++)
+function createGrid(size)
+{
+    for(let i = 0; i < size; i++)
     {
-        let createDivHorizontal = document.createElement("div");
-        createDivHorizontal.className = "gridDivHorizontal"
-        createDivHorizontal.addEventListener("mouseenter", (e) =>{
-            createDivHorizontal.className = "gridDivHorizontalColored"
-        })
-        createDivVertical.appendChild(createDivHorizontal);
+        let createDivVertical = document.createElement("div");
+        createDivVertical.className = "gridDivVertical"
+        mainDiv.appendChild(createDivVertical);
+
+        for(let j = 0; j < size; j++)
+        {
+            let createDivHorizontal = document.createElement("div");
+            createDivHorizontal.className = "gridDivHorizontal"
+            createDivHorizontal.addEventListener("mouseenter", (e) =>{
+                createDivHorizontal.className = "gridDivHorizontalColored"
+            });
+            createDivVertical.appendChild(createDivHorizontal);
+        }
     }
 }
+
+createGrid(16);
 
 changeGrid.addEventListener("click", (e) =>{
     let removeGrid = document.getElementsByClassName("gridDivVertical");
@@ -29,23 +35,16 @@ changeGrid.addEventListener("click", (e) =>{
     {
         return alert("Wrong value, can't generate a new grid")
     }
-    else
-    
+    else createGrid(newGrid);
+});
 
-    for(let i = 0; i < newGrid; i++)
-    {
-    let createDivVertical = document.createElement("div");
-    createDivVertical.className = "gridDivVertical"
-    mainDiv.appendChild(createDivVertical);
+let rgbAndOpacity = document.getElementById("rgbAndOpacity");
 
-        for(let j = 0; j < newGrid; j++)
-        {
-        let createDivHorizontal = document.createElement("div");
-        createDivHorizontal.className = "gridDivHorizontal"
-        createDivHorizontal.addEventListener("mouseenter", (e) =>{
-            createDivHorizontal.className = "gridDivHorizontalColored"
-        })
-        createDivVertical.appendChild(createDivHorizontal);
-        }
-}
+rgbAndOpacity.addEventListener("click", (e) =>
+{
+    createDivHorizontal.removeEventListener("mouseenter", (e) => {
+    createDivHorizontal.className = "gridDivHorizontalColored"
+    });
+
+//createDivHorizontal.style.backgroundColor = `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)} )`
 });
