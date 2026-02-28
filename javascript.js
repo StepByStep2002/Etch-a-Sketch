@@ -21,10 +21,51 @@ function createGrid(size)
     }
 }
 
-createGrid(16);
+function createRGBGrid(size)
+{
+    for(let i = 0; i < size; i++)
+    {
+        let createDivVertical = document.createElement("div");
+        createDivVertical.className = "gridDivVertical"
+        mainDiv.appendChild(createDivVertical);
 
-changeGrid.addEventListener("click", (e) =>{
-    let removeGrid = document.getElementsByClassName("gridDivVertical");
+        for(let j = 0; j < size; j++)
+        {
+            let createDivHorizontal = document.createElement("div");
+            createDivHorizontal.className = "gridDivHorizontal"
+            createDivHorizontal.addEventListener("mouseenter", (e) =>{
+                createDivHorizontal.style.backgroundColor = `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)} )`;
+            });
+            createDivVertical.appendChild(createDivHorizontal);
+        }
+    }
+}
+
+function createOpacityGrid(size)
+{
+    for(let i = 0; i < size; i++)
+    {
+        let createDivVertical = document.createElement("div");
+        createDivVertical.className = "gridDivVertical"
+        mainDiv.appendChild(createDivVertical);
+
+        for(let j = 0; j < size; j++)
+        {
+            let createDivHorizontal = document.createElement("div");
+            createDivHorizontal.className = "gridDivHorizontal"
+            createDivHorizontal.addEventListener("mouseenter", (e) => {
+                createDivHorizontal.className = "gridDivHorizontalColoredOpacity"
+                
+                createDivHorizontal.style.opacity = Number(createDivHorizontal.style.opacity) + 0.1;
+            });
+            createDivVertical.appendChild(createDivHorizontal);
+        }
+    }
+}
+
+function clearGrid()
+{
+      let removeGrid = document.getElementsByClassName("gridDivVertical");
     while(removeGrid.length > 0)
     {
         removeGrid[0].parentNode.removeChild(removeGrid[0]); 
@@ -35,16 +76,24 @@ changeGrid.addEventListener("click", (e) =>{
     {
         return alert("Wrong value, can't generate a new grid")
     }
-    else createGrid(newGrid);
+    else return newGrid;
+}
+
+createGrid(16);
+
+changeGrid.addEventListener("click", (e) => {
+   createGrid(clearGrid());
 });
 
-let rgbAndOpacity = document.getElementById("rgbAndOpacity");
-
-rgbAndOpacity.addEventListener("click", (e) =>
+let rgbGrid = document.getElementById("rgbGrid");
+rgbGrid.addEventListener("click", (e) =>
 {
-    createDivHorizontal.removeEventListener("mouseenter", (e) => {
-    createDivHorizontal.className = "gridDivHorizontalColored"
-    });
+    createRGBGrid(clearGrid())
+});
 
-//createDivHorizontal.style.backgroundColor = `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)} )`
+let opacityGrid = document.getElementById("opacityGrid")
+opacityGrid.addEventListener("click", (e) =>
+{
+    createOpacityGrid(clearGrid());
+
 });

@@ -14,18 +14,29 @@ html{
 }
 
 
-.gridDivVertical{
+.gridDivVertical
+{
     display: flex;
     flex: 1;
 }
 
-.gridDivHorizontal{
+.gridDivHorizontal
+{
     border: solid black 1px;
     flex: 1;
 }
 
-.gridDivHorizontalColored{
+.gridDivHorizontalColored
+{
     border: solid rgb(250, 233, 0) 1px;
     background-color: rgb(250, 233, 0);
     flex: 1;
+}
+
+.gridDivHorizontalColoredOpacity
+{
+    border: solid rgb(250, 233, 0) 1px;
+    background-color: rgb(250, 233, 0);
+    flex: 1;
+
 }
